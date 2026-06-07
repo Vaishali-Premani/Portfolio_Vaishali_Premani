@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-bg-dark: #030712;
+  --color-bg-dark-card: rgba(17, 24, 39, 0.45);
+  --color-bg-light: #f8fafc;
+  --color-bg-light-card: rgba(255, 255, 255, 0.7);
+  --color-accent-cyan: #06b6d4;
+  --color-accent-purple: #a855f7;
+  --color-accent-indigo: #6366f1;
+  
+  --font-display: 'Outfit', sans-serif;
+  --font-sans: 'Inter', sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  body {
+    @apply transition-colors duration-300 overflow-x-hidden;
+  }
+}
+
+/* Glassmorphism Styles */
+.glass {
+  background: rgba(17, 24, 39, 0.45);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.glass-light {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Dynamic glow effects */
+.glow-border {
+  position: relative;
+}
+
+.glow-border::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(90deg, #06b6d4, #a855f7);
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.glow-border:hover::after {
+  opacity: 1;
+}
+
+.text-glow-cyan {
+  text-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
+}
+
+.text-glow-purple {
+  text-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.2);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(99, 102, 241, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(6, 182, 212, 0.6);
+}
+
+/* Animated neural nodes in timeline */
+@keyframes pulseGlow {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0px rgba(6, 182, 212, 0.4);
+  }
+  50% {
+    transform: scale(1.15);
+    box-shadow: 0 0 12px 6px rgba(6, 182, 212, 0.2);
+  }
+}
+
+.node-pulse {
+  animation: pulseGlow 2s infinite ease-in-out;
+}
+
+/* Form inputs styling */
+.form-input {
+  @apply w-full px-4 py-3 bg-slate-900/50 dark:bg-slate-950/40 border border-slate-200/20 dark:border-slate-800/80 rounded-xl focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 text-slate-800 dark:text-slate-100 outline-none transition-all;
+}
+
+.form-input-light {
+  @apply w-full px-4 py-3 bg-white/70 border border-slate-200 rounded-xl focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600 text-slate-800 outline-none transition-all;
+}
